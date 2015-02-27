@@ -1,4 +1,4 @@
-EZ Parent
+EZ Runable Parent
 ===
 ### EZ 可运行组件构建框架。
 
