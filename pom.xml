@@ -16,7 +16,7 @@
     <description>EZ 可运行组件构建框架</description>
     <url>https://github.com/gudaoxuri/ez-runable-parent</url>
     <packaging>pom</packaging>
-    <version>0.1</version>
+    <version>0.2</version>
 
     <scm>
         <connection>scm:git:git@github.com:gudaoxuri/ez-runable-parent.git</connection>
@@ -46,6 +46,11 @@
                             <mainClass>${mainClass}</mainClass>
                         </manifest>
                     </archive>
+                    <excludes>
+                        <exclude>**/**.properties</exclude>
+                        <exclude>**/**.json</exclude>
+                        <exclude>**/**.xml</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
             <!-- 拷贝依赖的jar包到lib目录 -->
@@ -71,18 +76,28 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <configuration>
-                    <encoding>UTF-8</encoding>
-                </configuration>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <encoding>UTF-8</encoding>
+                            <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+                            <resources>
+                                <!-- 控制资源文件的拷贝 -->
+                                <resource>
+                                    <directory>src/main/resources</directory>
+                                    <targetPath>${project.build.directory}/config/</targetPath>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
-        <resources>
-            <!-- 控制资源文件的拷贝 -->
-            <resource>
-                <directory>src/main/resources</directory>
-                <targetPath>${project.build.directory}/config/</targetPath>
-            </resource>
-        </resources>
     </build>
 
 </project>

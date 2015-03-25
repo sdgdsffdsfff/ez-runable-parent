@@ -7,7 +7,7 @@ EZ Runable Parent
     <dependency>
         <groupId>com.ecfront</groupId>
         <artifactId>ez-runable-parent</artifactId>
-        <version>0.1</version>
+        <version>0.2</version>
     </dependency>
 
 ### Check out sources
